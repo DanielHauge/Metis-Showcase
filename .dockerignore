@@ -1,0 +1,5 @@
+metis-showcase/node_modules
+metis-showcase/build
+.git
+build
+node_modules
