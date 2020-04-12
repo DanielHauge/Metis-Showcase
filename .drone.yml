@@ -12,6 +12,9 @@ steps:
   commands:
     - echo $DOCKER_USERNAME
     - echo "${docker_password}"
+    - echo "${DOCKER_PASSWORD}"
+    - echo ${DOCKER_PASSWORD}
+
 
 - name: docker  
   image: plugins/docker
