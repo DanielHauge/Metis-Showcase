@@ -5,7 +5,8 @@ platform:
   os: linux
   arch: amd64
 
-- name: docker
+steps:
+- name: docker  
   image: plugins/docker
   settings:
     registry: registry.hub.docker.com
