@@ -23,13 +23,6 @@ steps:
 
   - name: docker  
     image: plugins/docker
-    environment:
-      USERNAME: 
-        from_secret: docker_username
-      PASSWORD: 
-        from_secret: docker_password
-    commands:
-      - docker login -u $USERNAME -p $PASSWORD
     settings:
       insecure: true
       debug: true
