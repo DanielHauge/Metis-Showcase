@@ -14,7 +14,7 @@ steps:
       password: 
         from_secret: docker_password
     commands:
-      - docker login -u $PLUGIN_USERNAME -p $PLUGIN_PASSWORD  
+      - docker login -u $$PLUGIN_USERNAME -p $$PLUGIN_PASSWORD  
     volumes:
       - name: dokr
         path: /root/.docker
