@@ -8,14 +8,11 @@ platform:
 steps:
 - name: test
   image: alpine
-  envoriment:
-     - FOO=bar
-     - MY_SECRET=${MY_SECRET}
+  secrets: [docker_password, docker_username]
   commands:
-    - echo $FOO
-    - echo $MY_SECRET
-    - echo "${MY_SECRET}"
-    
+    - echo $DOCKER_USERNAME
+    - echo "${docker_password}"
+
 - name: docker  
   image: plugins/docker
   settings:
