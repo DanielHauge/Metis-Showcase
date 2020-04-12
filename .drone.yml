@@ -10,8 +10,10 @@ steps:
     image: plugins/docker
     settings:
       registry: registry.hub.docker.com
-      repo: hub.docker.com/danielhauge/metis-showcase
+      repo: danielhauge/metis-showcase
       username: 
         from_secret: docker_username
       password:
         from_secret: docker_password
+      auth:
+        from_secret: docker_auth
