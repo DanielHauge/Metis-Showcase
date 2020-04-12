@@ -5,29 +5,10 @@ platform:
   os: linux
   arch: amd64
 
-steps:
-- name: test
-  image: alpine
-  secrets: [docker_password, DOCKER_USERNAME]
-  environment:
-    USERNAME:
-      from_secret: docker_username
-  commands:
-    - echo $docker_username
-    - echo "${docker_username}"
-    - echo "${DOCKER_USERNAME}"
-    - echo ${DOCKER_USERNAME}
-    - echo $${DOCKER_USERNAME}
-    - echo $${docker_username}
-    - echo $${USERNAME}
-    - echo $${username}
-
-
-
-
 - name: docker  
   image: plugins/docker
   settings:
+    registry: registry.hub.docker.com
     repo: danielhauge/metis-showcase
     username: 
       from_secret: docker_username
