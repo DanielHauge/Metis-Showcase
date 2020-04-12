@@ -12,13 +12,12 @@ steps:
       username: 
         from_secret: docker_username
       password: 
-        from_secret: docker_password        
+        from_secret: docker_password
     commands:
       - docker login -u $PLUGIN_USERNAME -p $PLUGIN_PASSWORD  
     volumes:
       - name: dokr
         path: /root/.docker
-        
 - name: docker  
   image: plugins/docker
   settings:
