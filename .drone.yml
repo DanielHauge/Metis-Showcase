@@ -14,7 +14,7 @@ steps:
       PASSWORD: 
         from_secret: docker_password
     commands:
-      - docker login -u $USERNAME -p $PASSWORD¨
+      - docker login -u $USERNAME -p $PASSWORD
       - docker build -t danielhauge/metis-showcase .
       - docker push danielhauge/metis-showcase
     volumes:
