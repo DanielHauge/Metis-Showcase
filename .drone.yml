@@ -19,7 +19,7 @@ steps:
   - name: deploy
     image: appleboy/drone-ssh
     settings:
-      host: feveile-hauge.com
+      host: feveile-hauge.dk
       username: root
       key:
         from_secret: metis_key
