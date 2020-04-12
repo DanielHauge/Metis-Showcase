@@ -6,29 +6,24 @@ platform:
   arch: amd64
 
 steps:
-  # - name: login
-  #   image: docker
-  #   environment:
-  #     USERNAME: 
-  #       from_secret: docker_username
-  #     PASSWORD: 
-  #       from_secret: docker_password
-  #   commands:
-  #     - docker login -u $USERNAME -p $PASSWORD
-  #     - docker build -t danielhauge/metis-showcase .
-  #     - docker push danielhauge/metis-showcase
-  #   volumes:
-  #   - name: docker_sock
-      # path: /var/run/docker.sock
-
-  - name: docker  
+  - name: build  
     image: plugins/docker
     settings:
-      insecure: true
-      debug: true
       registry: docker.io
       repo: danielhauge/metis-showcase
       username: 
         from_secret: docker_username
       password:
         from_secret: docker_password
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    settings:
+      host: feveile-hauge.com
+      username: root
+      key:
+        from_secret: metis_key
+      port: 22
+      script:
+      - docker pull danielhauge/metis-showcase:latest
+      - docker service update --image danielhauge/metis-showcase:latest showcase
