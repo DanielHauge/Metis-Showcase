@@ -17,6 +17,12 @@ steps:
     - echo "${docker_username}"
     - echo "${DOCKER_USERNAME}"
     - echo ${DOCKER_USERNAME}
+    - echo $${DOCKER_USERNAME}
+    - echo $${docker_username}
+    - echo $${USERNAME}
+    - echo $${username}
+
+
 
 
 - name: docker  
