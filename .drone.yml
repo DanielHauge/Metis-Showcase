@@ -10,6 +10,7 @@ steps:
   image: plugins/docker
   settings:
     repo: danielhauge/metis-showcase
-    username: danielhauge
+    username: 
+      from_secret: docker_username
     password:
       from_secret: docker_password
