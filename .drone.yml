@@ -6,29 +6,12 @@ platform:
   arch: amd64
 
 steps:
-  # - name: login
-  #   image: docker
-  #   settings:
-  #     username: 
-  #       from_secret: docker_username
-  #     password: 
-  #       from_secret: docker_password
-  #   commands:
-  #     - docker login -u $PLUGIN_USERNAME -p $PLUGIN_PASSWORD
-  #   volumes:
-  #     - name: dokr
-  #       path: /root/.docker
-
   - name: docker  
     image: plugins/docker
     settings:
       registry: registry.hub.docker.com
-      repo: danielhauge/metis-showcase
+      repo: hub.docker.com/danielhauge/metis-showcase
       username: 
         from_secret: docker_username
       password:
         from_secret: docker_password
-
-volumes:
-  - name: dokr
-    temp: {}
