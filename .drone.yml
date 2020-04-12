@@ -6,24 +6,26 @@ platform:
   arch: amd64
 
 steps:
-  - name: login
-    image: docker
-    environment:
-      USERNAME: 
-        from_secret: docker_username
-      PASSWORD: 
-        from_secret: docker_password
-    commands:
-      - docker login -u $USERNAME -p $PASSWORD
-      - docker build -t danielhauge/metis-showcase .
-      - docker push danielhauge/metis-showcase
-    volumes:
-    - name: docker_sock
-      path: /var/run/docker.sock
+  # - name: login
+  #   image: docker
+  #   environment:
+  #     USERNAME: 
+  #       from_secret: docker_username
+  #     PASSWORD: 
+  #       from_secret: docker_password
+  #   commands:
+  #     - docker login -u $USERNAME -p $PASSWORD
+  #     - docker build -t danielhauge/metis-showcase .
+  #     - docker push danielhauge/metis-showcase
+  #   volumes:
+  #   - name: docker_sock
+      # path: /var/run/docker.sock
 
   - name: docker  
     image: plugins/docker
     settings:
+      insecure: true
+      debug: true
       registry: registry.hub.docker.com
       repo: danielhauge/metis-showcase
       username: 
