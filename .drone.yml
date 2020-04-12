@@ -8,12 +8,15 @@ platform:
 steps:
 - name: test
   image: alpine
-  secrets: [docker_password, docker_username]
+  secrets: [docker_password, DOCKER_USERNAME]
+  environment:
+    USERNAME:
+      from_secret: docker_username
   commands:
-    - echo $DOCKER_USERNAME
-    - echo "${docker_password}"
-    - echo "${DOCKER_PASSWORD}"
-    - echo ${DOCKER_PASSWORD}
+    - echo $docker_username
+    - echo "${docker_username}"
+    - echo "${DOCKER_USERNAME}"
+    - echo ${DOCKER_USERNAME}
 
 
 - name: docker  
