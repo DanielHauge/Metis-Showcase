@@ -1,0 +1,8 @@
+steps:
+- name: docker  
+  image: plugins/docker
+  settings:
+    repo: DanielHauge/metis-showcase
+    username: "DanielHauge"
+    password:
+      from_secret: docker_password
