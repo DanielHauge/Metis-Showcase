@@ -7,17 +7,17 @@ platform:
 
 steps:
   - name: login
-      image: docker
-      environment:
-        USERNAME: 
-          from_secret: docker_username
-        PASSWORD: 
-          from_secret: docker_password
-      commands:
-        - docker login -u $USERNAME -p $PASSWORD
-      volumes:
-      - name: docker_sock
-        path: /var/run/docker.sock
+    image: docker
+    environment:
+      USERNAME: 
+        from_secret: docker_username
+      PASSWORD: 
+        from_secret: docker_password
+    commands:
+      - docker login -u $USERNAME -p $PASSWORD
+    volumes:
+    - name: docker_sock
+      path: /var/run/docker.sock
 
   - name: docker  
     image: plugins/docker
