@@ -6,6 +6,16 @@ platform:
   arch: amd64
 
 steps:
+- name: test
+  image: alpine
+  envoriment:
+     - FOO=bar
+     - MY_SECRET=${MY_SECRET}
+  commands:
+    - echo $FOO
+    - echo $MY_SECRET
+    - echo "${MY_SECRET}"
+    
 - name: docker  
   image: plugins/docker
   settings:
