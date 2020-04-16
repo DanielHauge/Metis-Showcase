@@ -1,0 +1,46 @@
+$site-green: rgba(30, 109, 50, 0.75);
+$site-bg: #282c34;
+
+.Main {
+  text-align: center;
+  background-color: $site-bg;
+  min-height: 100vh;
+}
+
+.Site-logo {
+  height: 15vmin;
+  pointer-events: none;
+}
+
+
+.Head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Body {
+  font-size: calc(10px + 2vmin);
+  color: white;
+  align-items: center;
+}
+
+.Centered {
+  align-self: center;
+}
+
+.Floored {
+  align-self: flex-end;
+}
+
+hr.style-two {
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $site-green, rgba(0, 0, 0, 0));
+}
+
+
+
+@import "~bootstrap/scss/bootstrap";
