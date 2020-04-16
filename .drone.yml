@@ -1,10 +1,6 @@
 kind: pipeline
 name: default
 
-platform:
-  os: linux
-  arch: amd64
-
 steps:
   - name: build  
     image: plugins/docker
@@ -27,3 +23,20 @@ steps:
       script:
       - docker pull danielhauge/metis-showcase:latest
       - docker service update --image danielhauge/metis-showcase:latest showcase
+  - name: discord notification
+    image: appleboy/drone-discord
+    settings:
+      webhook_id: xxxx
+      webhook_token: xxxx
+      message: >
+             {{#success build.status}}
+               build {{build.number}} succeeded. Good job.
+             {{else}}
+               build {{build.number}} failed. Fix me please.
+             {{/success}}
+
+
+
+trigger:
+  branch:
+  - master
