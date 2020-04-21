@@ -13,7 +13,6 @@
     "bootstrap": "^4.4.1",
     "google-protobuf": "~3.11.4",
     "grpc": "^1.24.2",
-    "grpc-tools": "^1.8.1",
     "grpc-web-client": "0.7.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
@@ -38,7 +37,8 @@
     "@types/react": "^16.0.34",
     "@types/react-dom": "^16.0.3",
     "@types/react-redux": "^5.0.14",
-    "ts-protoc-gen": "^0.4.0"
+    "ts-protoc-gen": "^0.4.0",
+    "grpc-tools": "^1.8.1"
   },
   "eslintConfig": {
     "extends": "react-app"
