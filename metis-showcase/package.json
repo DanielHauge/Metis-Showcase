@@ -11,11 +11,16 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "bootstrap": "^4.4.1",
+    "google-protobuf": "~3.11.4",
+    "grpc-web-client": "0.7.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
+    "react-redux": "~7.2.0",
+    "react-router": "^5.1.2",
     "react-scripts": "3.4.1",
+    "redux": "~4.0.5",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -23,6 +28,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.2.7",
+    "@types/jest": "^22.0.1",
+    "@types/node": "^9.3.0",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
+    "ts-protoc-gen": "^0.4.0"
   },
   "eslintConfig": {
     "extends": "react-app"
