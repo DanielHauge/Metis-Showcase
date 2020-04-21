@@ -1,1 +1,0 @@
-protoc -I . --plugin=protoc-gen-ts=./metis-showcase/node_modules/.bin/protoc-gen-ts --plugin=protoc-gen-grpc=./metis-showcase/node_modules/.bin/grpc_tools_node_protoc_plugin --ts_out=service=grpc-node:./metis-showcase/src --js_out=import_style=commonjs,binary:./metis-showcase/src --grpc_out=./metis-showcase/src ./proto/showcase.proto
