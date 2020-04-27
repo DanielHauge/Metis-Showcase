@@ -2,6 +2,10 @@ import React from 'react';
 import './Main.scss';
 import Head from './layout/Head';
 import Body from './layout/Body';
+import { ApiClient, Config } from './../api/api';
+import { BrowserRouter } from 'react-router-dom';
+
+
 
 
 interface IProps {
@@ -9,24 +13,28 @@ interface IProps {
 }
 
 interface IState {
-  lol: string;
+  navigationConfig: Config;
 }
 
 export default class Main extends React.Component<IProps, IState> {
 
-
-
-  componentDidMount() {
-    this.setState(state => {})
+  apiClient: ApiClient;
+  constructor(props: IProps) {
+    super(props)
+    this.apiClient = new ApiClient();
+    const navigation = this.apiClient.navigationConfig();
+    this.state = { navigationConfig: navigation }
   }
 
 
   render() {
     return (
       <div className="Main">
-        <Head />
-        <hr className="style-two" />
-        <Body />
+        <BrowserRouter>
+          <Head />
+          <hr className="style-two" />
+          <Body navigationConfig={this.state.navigationConfig} />
+        </BrowserRouter>
       </div>
     )
   };

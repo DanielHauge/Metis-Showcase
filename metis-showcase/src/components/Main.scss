@@ -1,10 +1,12 @@
 $site-green: rgba(30, 109, 50, 0.75);
 $site-bg: #282c34;
+$site-text-color: white;
 
 .Main {
   text-align: center;
   background-color: $site-bg;
   min-height: 100vh;
+  color: $site-green;
 }
 
 .Site-logo {
