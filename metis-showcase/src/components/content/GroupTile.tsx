@@ -7,6 +7,7 @@ import {GroupNodeData} from './../../api/api'
 export class GroupTile extends React.Component<GroupNodeData> {
 
     render() {
+        console.log("uuh hallo!")
         return (
             <Card>
                 <Card.Header>{this.props.title}</Card.Header>

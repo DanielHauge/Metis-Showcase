@@ -6,26 +6,34 @@ import { RepositoryTile } from '../content/RepositoryTile';
 
 export default class Browse extends React.Component<BrowseData> {
 
-    constructor(props: BrowseData) {
-        super(props)
-    }
+    // constructor(props: BrowseData) {
+    //     super(props)
+    // }
 
     componentDidMount(){
         console.log("browse", " mounted")
     }
 
+
     render() {
+        console.log(this.props)
+        const links = []
+        this.props.Children.forEach((children, key) => {
+            links.push(children.data)
+            switch (children.data.type) {
+                case NavigationType.Group:
+                    console.log("It shulda made group")
+                    links.push(<Link key={children.data.uri} to={children.data.uri}> <GroupTile {...children.data as GroupNodeData} /> </Link>)
+                default:
+                    console.log("It shulda made showcase")
+                    links.push(<Link key={children.data.uri} to={children.data.uri}><RepositoryTile {...children.data as RepoNodeData} /> </Link>)
+            }
+        });
         return (
             <div className="Browse">
                 <h1>{this.props.title}</h1>
-                {this.props.immediateChildren && this.props.immediateChildren.map(children => {
-                    switch (children.type) {
-                        case NavigationType.Group:
-                            return (<Link key={children.uri} to={children.uri}> <GroupTile {...children as GroupNodeData} /> </Link>)
-                        default:
-                            return (<Link key={children.uri} to={children.uri}><RepositoryTile {...children as RepoNodeData} /> </Link>)
-                    }
-                })}
+                <h1>Browse</h1>
+                {/* {links} */}
             </div>
         )
     };

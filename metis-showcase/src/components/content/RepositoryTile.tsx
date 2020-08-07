@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
-import {RepoNodeData} from './../../api/api'
 
 
 
@@ -14,6 +13,7 @@ export interface IProps {
 export class RepositoryTile extends React.Component<IProps> {
 
     render() {
+        console.log("uuh hallo?")
         return (
             <Card>
                 <Card.Header>{this.props.title}</Card.Header>

@@ -11,9 +11,9 @@ interface IProps {
 
 export default class Dashboard extends React.Component<IProps> {
 
-    constructor(props: IProps) {
-        super(props)
-    }
+    // constructor(props: IProps) {
+    //     super(props)
+    // }
 
     componentDidMount() {
         console.log("dashboard", " mounted")

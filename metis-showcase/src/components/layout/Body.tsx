@@ -1,9 +1,8 @@
 import React from 'react'
 import { Config, Node, NavigationType, BrowseData } from '../../api/api'
-import { BrowserRouter as Switch, Route, Redirect, Router } from "react-router-dom";
+import { Route, match as Match } from "react-router-dom";
 import Showcase from '../pages/Showcase';
 import Dashboard from '../pages/Dashboard';
-import Search from '../pages/Search';
 import NotFound from '../pages/404';
 import Browse from '../pages/Browse';
 import Container from 'react-bootstrap/Container'
@@ -14,45 +13,64 @@ interface IProps extends React.Props<Body> {
 
 export default class Body extends React.Component<IProps> {
 
-  constructor(props: IProps) {
-    super(props)
-  }
-
-
-
-  walkAllNodes(currentNode: Node, contextUri: string): BrowseData[] {
-    const currentBrowseData = new BrowseData(currentNode, contextUri);
-    if (currentNode.children.length === 0) return [currentBrowseData]
-    else return [
-      ...currentNode.children.slice().map(childrenNode => this.walkAllNodes(childrenNode, "")).flat(1),
-      currentBrowseData
-    ]
-  }
-
+  // constructor(props: IProps) {
+  //   super(props)
+  // }
 
 
   render() {
     return (
       <div className="Body">
         <Container>
-            <Switch>
-              {[<Route exact path="/"> <Dashboard repoTiles={this.props.navigationConfig.featuredRepos} firstNode={this.props.navigationConfig.rootNavigationNode.data} /> </Route>,
-              <Route exact path="/search"> <Search /> </Route>,
-              ...this.walkAllNodes(this.props.navigationConfig.rootNavigationNode, "/").map(page => {
-                switch (page.type) {
-                  case NavigationType.Showcase:
-                    return (<Route key={page.uri} exact path={page.uri}> <Showcase {...page} /> </Route>)
-                  case NavigationType.Group:
-                    return (<Route key={page.uri} exact path={page.uri}> <Browse {...page} /> </Route>)
-                  default:
-                    break;
-                }
-              }), <Route path="*" component={NotFound} ></Route>]}
+          <div>
+            <Route exact path="/:1/:2/:3/:4/:5/" render={({ match }) => this.findComponent(match)} />
+            <Route exact path="/:1/:2/:3/:4/" render={({ match }) => this.findComponent(match)} />
+            <Route exact path="/:1/:2/:3/" render={({ match }) => this.findComponent(match)} />
+            <Route exact path="/:1/:2/" render={({ match }) => this.findComponent(match)} />
+            <Route exact path="/:1/" render={({ match }) => this.findComponent(match)} />
+            <Route exact path="/"> <Dashboard repoTiles={this.props.navigationConfig.featuredRepos} firstNode={this.props.navigationConfig.rootNavigationNode.data} /> </Route>
 
-            </Switch>
+          </div>
         </Container>
 
       </div>
     )
-  };
+  } findComponent(match: Match<any>): any {
+    console.log(match);
+    const root = this.props.navigationConfig.rootNavigationNode;
+    try {
+      const component = this.navigate(
+        this.navigate(
+          this.navigate(
+            this.navigate(
+              this.navigate(root,
+                match.params["1"]),
+              match.params["2"]),
+            match.params["3"]),
+          match.params["4"]),
+        match.params["5"]);
+        if (component.data.type === NavigationType.Group){
+          return (<Browse {...new BrowseData(component)} /> )
+        } else{
+          return (<Showcase title={component.data.title} uri={component.data.uri}/>)
+        }
+    } catch (error) {
+      return (<NotFound></NotFound>)
+    };
+    
+  }
+
+  navigate(node: Node, key: string): Node {
+    if (!key) return node;
+    const newNode = node.Children.get(key);
+    if (key === this.props.navigationConfig.rootNavigationNode.data.uri) return node;
+    if (!newNode)throw new Error('key was not defined.');
+    return newNode;
+  }
+
+  ;
 }
+
+
+
+

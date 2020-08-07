@@ -1,5 +1,5 @@
 import { httpclient } from 'typescript-http-client'
-import { IProps as RepositoryTileProps, RepositoryTile } from './../components/content/RepositoryTile'
+import { IProps as RepositoryTileProps } from './../components/content/RepositoryTile'
 
 
 export interface Config {
@@ -9,9 +9,14 @@ export interface Config {
 }
 
 
+
+export enum NavigationType {
+    Group = 0, Showcase = 1
+}
+
 export interface Node {
     data: NodeData;
-    children: Node[];
+    Children: Map<string,Node>;
 }
 
 export interface NodeData {
@@ -21,21 +26,16 @@ export interface NodeData {
 }
 
 export class BrowseData implements NodeData {
-    immediateChildren: NodeData[];
+    Children: Map<string,Node>;
     title: string;
     uri: string;
     type: NavigationType;
 
-    constructor(self: Node, uriContext: string) {
+    constructor(self: Node) {
         this.title = self.data.title;
-        this.uri = uriContext + self.data.uri;
-        const thatUri = this.uri;
+        this.uri = self.data.uri;
         this.type = self.data.type;
-        this.immediateChildren = self.children.slice().map(c => {
-            let data = c.data;
-            data.uri = thatUri + "/" + data.uri;
-            return {...data};
-        })
+        this.Children = self.Children;
     }
 }
 
@@ -65,9 +65,7 @@ export class RepoNodeData implements NodeData, RepositoryTileProps {
     }
 }
 
-export enum NavigationType {
-    Group = 0, Showcase = 1
-}
+
 
 export class ApiClient {
     client: httpclient.HttpClient;
@@ -84,37 +82,16 @@ export class ApiClient {
 
     testNavigationConfig(): Config {
         return {
-            featuredRepos: [new RepoNodeData("first level 2", "this is a description for first level 2", new Date(), "current/level2/first"), new RepoNodeData("first level 2", "this is a description for first level 2", new Date(), "current/level2/level3/first")],
+            featuredRepos:[new RepoNodeData("Featured1", "This is description featured test", new Date(), "main/One/Two/Tree/Featured")],
             rootNavigationNode: {
-                data: new GroupNodeData("Root level", "current"),
-                children: [
-                    {
-                        data: new GroupNodeData("level 2", "level2"),
-                        children: [
-                            {
-                                data: new RepoNodeData("first level 2", "this is a description for first level 2", new Date(), "first"),
-                                children: []
-                            },
-                            {
-                                data: new GroupNodeData("Level 3", "level3"),
-                                children: [
-                                    {
-                                        data: new RepoNodeData("first level 3", "this is a description for first level 3", new Date(), "first"),
-                                        children: []
-                                    }
-                                ]
-                            },
-                        ],
-                    },
-                    {
-                        data: new RepoNodeData("second level 1", "this is a description for second level 1", new Date(), "second"),
-                        children: []
-                    },
-                    {
-                        data: new RepoNodeData("third level 1", "this is a description for third level 1", new Date(), "third"),
-                        children: []
-                    },
-                ]
+                data:{title:"main title", type:NavigationType.Group, uri:"main"},
+                Children: new Map([["hejsa 1", {
+                    data:{title:"first title", type:NavigationType.Showcase, uri:"first"},
+                    Children: new Map([]),
+                } as Node], ["hejsa 2", {
+                    data:{title:"second title", type:NavigationType.Showcase, uri:"second"},
+                    Children: new Map([]),
+                } as Node]]),
             }
         }
 

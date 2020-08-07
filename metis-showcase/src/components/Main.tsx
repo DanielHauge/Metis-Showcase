@@ -3,7 +3,6 @@ import './Main.scss';
 import Head from './layout/Head';
 import Body from './layout/Body';
 import { ApiClient, Config } from './../api/api';
-import { BrowserRouter } from 'react-router-dom';
 
 
 
@@ -30,11 +29,9 @@ export default class Main extends React.Component<IProps, IState> {
   render() {
     return (
       <div className="Main">
-        <BrowserRouter>
-          <Head />
-          <hr className="style-two" />
-          <Body navigationConfig={this.state.navigationConfig} />
-        </BrowserRouter>
+        <Head />
+        <hr className="style-two" />
+        <Body navigationConfig={this.state.navigationConfig} />
       </div>
     )
   };
