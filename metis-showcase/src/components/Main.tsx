@@ -25,6 +25,13 @@ export default class Main extends React.Component<IProps, IState> {
     this.state = { navigationConfig: navigation }
   }
 
+  devTest(){
+    console.log(this.state.navigationConfig);
+    console.log("to json")
+    
+    console.log(JSON.stringify(this.state.navigationConfig))
+  }
+
 
   render() {
     return (
@@ -32,6 +39,7 @@ export default class Main extends React.Component<IProps, IState> {
         <Head />
         <hr className="style-two" />
         <Body navigationConfig={this.state.navigationConfig} />
+        <button onClick={this.devTest.bind(this)}> test</button>
       </div>
     )
   };
