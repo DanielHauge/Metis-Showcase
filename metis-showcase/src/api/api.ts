@@ -79,17 +79,22 @@ export class ApiClient {
         return config;
     }
 
+    // main/first
+    // main/first/nested
+    // main/second
 
     testNavigationConfig(): Config {
         return {
             featuredRepos:[new RepoNodeData("Featured1", "This is description featured test", new Date(), "main/One/Two/Tree/Featured")],
             rootNavigationNode: {
                 data:{title:"main title", type:NavigationType.Group, uri:"main"},
-                Children: new Map([["hejsa 1", {
-                    data:{title:"first title", type:NavigationType.Showcase, uri:"first"},
-                    Children: new Map([]),
-                } as Node], ["hejsa 2", {
-                    data:{title:"second title", type:NavigationType.Showcase, uri:"second"},
+                Children: new Map([["first", {
+                    data:{title:"first title", type:NavigationType.Group, uri:"first"},
+                    Children: new Map([["nested", {
+                        data:{title:"Nested title", type:NavigationType.Showcase, uri:"nested"},
+                        Children: new Map([]), } as Node]])
+                } as Node], ["second", {
+                    data:{title:"second title", type:NavigationType.Showcase, uri:"second/"},
                     Children: new Map([]),
                 } as Node]]),
             }
