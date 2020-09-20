@@ -45,4 +45,26 @@ hr.style-two {
 
 
 
+
+.bc{
+  display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: none;
+    border-radius: 0.25rem;
+}
+
+.bc-item{
+  a:hover{
+    text-decoration: none;
+  }
+  a{
+    text-decoration: none;
+  }
+}
+
+
+
 @import "~bootstrap/scss/bootstrap";

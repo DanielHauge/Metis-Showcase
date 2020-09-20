@@ -29,14 +29,13 @@ export default class Body extends React.Component<IProps> {
             <Route exact path="/:1/:2/" render={({ match }) => this.findComponent(match)} />
             <Route exact path="/:1/" render={({ match }) => this.findComponent(match)} />
             <Route exact path="/"> <Dashboard repoTiles={this.props.navigationConfig.featuredRepos} firstNode={this.props.navigationConfig.rootNavigationNode.data} /> </Route>
-
           </div>
         </Container>
-
       </div>
     )
-  } findComponent(match: Match<any>): any {
-    console.log(match);
+  }
+
+  findComponent(match: Match<any>): any {
     const root = this.props.navigationConfig.rootNavigationNode;
     try {
       const component = this.navigate(
@@ -49,28 +48,21 @@ export default class Body extends React.Component<IProps> {
             match.params["3"]),
           match.params["4"]),
         match.params["5"]);
-        if (component.data.type === NavigationType.Group){
-          return (<Browse {...new BrowseData(component)} /> )
-        } else{
-          return (<Showcase title={component.data.title} uri={component.data.uri}/>)
-        }
+      if (component.data.type === NavigationType.Group) {
+        return (<Browse {...new BrowseData(component)} />)
+      } else {
+        return (<Showcase title={component.data.title} uri={component.data.uri} />)
+      }
     } catch (error) {
       return (<NotFound></NotFound>)
     };
-    
   }
 
   navigate(node: Node, key: string): Node {
     if (!key) return node;
     const newNode = node.Children.get(key);
     if (key === this.props.navigationConfig.rootNavigationNode.data.uri) return node;
-    if (!newNode)throw new Error('key was not defined.');
+    if (!newNode) throw new Error('key was not defined.');
     return newNode;
-  }
-
-  ;
+  };
 }
-
-
-
-

@@ -17,26 +17,30 @@ export default class Browse extends React.Component<BrowseData> {
 
     render() {
         console.log(this.props)
-        const links = new Array<React.ReactFragment>();
+        const Repos = new Array<React.ReactFragment>();
+        const Groups = new Array<React.ReactFragment>();
         this.props.Children.forEach((children, key) => {
-            // links.push(children.data)
             const uri = this.props.uri+"/"+children.data.uri;
             switch (children.data.type) {
                 case NavigationType.Group:
                     console.log("It shulda made group")
-                    links.push(<><Link key={children.data.uri} to={uri}> <GroupTile {...children.data as GroupNodeData} /> </Link></>)
+                    Groups.push(<><Link key={children.data.uri} to={uri}> <GroupTile {...children.data as GroupNodeData} /> </Link></>)
+                    break;
                 default:
                     console.log("It shulda made showcase")
-                    links.push(<><Link key={children.data.uri} to={uri}><RepositoryTile {...children.data as RepoNodeData} /> </Link></>)
+                    Repos.push(<><Link key={children.data.uri} to={uri}><RepositoryTile {...children.data as RepoNodeData} /> </Link></>)
             }
         });
         return (
             <div className="Browse">
                 <h1>{this.props.title}</h1>
                 <h1>Browse</h1>
-                {links}
-                {/* {links.map((x)=> x as React.Component} */}
-                {}
+                {Groups}
+                <br/>
+                {Repos}
+                
+                
+                
             </div>
         )
     };

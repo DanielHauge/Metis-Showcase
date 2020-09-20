@@ -13,7 +13,6 @@ export interface IProps {
 export class RepositoryTile extends React.Component<IProps> {
 
     render() {
-        console.log("uuh hallo?")
         return (
             <Card>
                 <Card.Header>{this.props.title}</Card.Header>

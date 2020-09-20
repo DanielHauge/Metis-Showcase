@@ -1,21 +1,18 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
-import {GroupNodeData} from './../../api/api'
+import { GroupNodeData } from './../../api/api'
 
 
 
 export class GroupTile extends React.Component<GroupNodeData> {
 
     render() {
-        console.log("uuh hallo!")
         return (
             <Card>
-                <Card.Header>{this.props.title}</Card.Header>
+                <Card.Img variant="top" src={this.props.picture} />
                 <Card.Body>
-                    <blockquote className="blockquote mb-0">
-                    </blockquote>
+                    <Card.Title>{this.props.title}</Card.Title>
                 </Card.Body>
-
             </Card>
         )
     };

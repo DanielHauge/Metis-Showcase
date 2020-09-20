@@ -23,7 +23,6 @@ export default class Showcase extends React.Component<IProps> {
         Showcase
           <h1>{this.props.title}</h1>
           <button>{this.props.uri}</button>
-
       </div>
     )
   };
