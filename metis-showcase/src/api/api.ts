@@ -91,15 +91,19 @@ export class ApiClient {
             featuredRepos:[new RepoNodeData("Featured1", "This is description featured test", new Date(), "main/first/nested")],
             rootNavigationNode: {
                 data: new GroupNodeData("main title", "main", GG),
-                Children: new Map([["first", {
-                    data: new GroupNodeData("first title", "first", GG),
-                    Children: new Map([["nested", {
-                        data:{title:"Nested title", type:NavigationType.Showcase, uri:"nested"},
-                        Children: new Map([]), } as Node]])
-                } as Node], ["second", {
-                    data:{title:"second title", type:NavigationType.Showcase, uri:"second"},
-                    Children: new Map([]),
-                } as Node]]),
+                Children: new Map([
+                    ["first", {data: new GroupNodeData("first title", "first", GG),
+                        Children: new Map([
+                            ["nested", {data:{title:"Nested title", type:NavigationType.Showcase, uri:"nested"},
+                                Children: new Map([]), 
+                            } as Node]])
+                    } as Node], 
+                    ["second", {data: new GroupNodeData("second", "second", GG), Children: new Map([])} as Node],
+                    ["Third", {data: new GroupNodeData("Third", "Third", GG), Children: new Map([])} as Node],
+                    ["Fourth", {data: new GroupNodeData("Fourth", "Fourth", GG), Children: new Map([])} as Node],
+                    ["first showcase", {data:{title:"first showcase", type:NavigationType.Showcase, uri:"showcase"},
+                        Children: new Map([]),
+                    } as Node]]),
             }
         }
 
